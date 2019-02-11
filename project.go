@@ -11,23 +11,25 @@ import (
 type Projects []*Project
 
 type Project struct {
-	Schema      string      `cfg:"schema,omitempty"`
-	Name        string      `cfg:"name,omitempty"`
-	Hostname    string      `cfg:"hostname,omitempty"`
-	IsEnabled   bool        `cfg:"enabled"`
-	Identity    string      `cfg:"identity,omitempty"`
-	Description string      `cfg:"description,omitempty"`
-	Namespace   string      `cfg:"namespace,omitempty"`
-	Slug        string      `cfg:"slug,omitempty"`
-	Prefix      string      `cfg:"prefix,omitempty"`
-	Type        ProjectType `cfg:"type,omitempty"`
-	Aliases     []string    `cfg:"aliases,omitempty"`
-	Dev         *Dev        `cfg:"dev,omitempty"`
-	Stack       Stack       `cfg:"stack,omitempty"`
-	Source      *Source     `cfg:"source,omitempty"`
-	Deploy      *Deploy     `cfg:"deploy,omitempty"`
-	Hosts       HostMap     `cfg:"hosts,omitempty"`
-	Root        *string     `cfg:"-"`
+	Schema      string                 `json:"schema,omitempty"`
+	Name        string                 `json:"name,omitempty"`
+	Hostname    string                 `json:"hostname,omitempty"`
+	IsEnabled   bool                   `json:"enabled"`
+	Identity    string                 `json:"identity,omitempty"`
+	Description string                 `json:"description,omitempty"`
+	Namespace   string                 `json:"namespace,omitempty"`
+	Slug        string                 `json:"slug,omitempty"`
+	Prefix      string                 `json:"prefix,omitempty"`
+	Type        ProjectType            `json:"type,omitempty"`
+	Aliases     []string               `json:"aliases,omitempty"`
+	Team        Team                   `json:"team,omitempty"`
+	Stack       Stack                  `json:"stack,omitempty"`
+	Dev         *Dev                   `json:"dev,omitempty"`
+	Source      *Source                `json:"source,omitempty"`
+	Deploy      *Deploy                `json:"deploy,omitempty"`
+	Hosts       HostMap                `json:"hosts,omitempty"`
+	Extra       map[string]interface{} `json:"extra,omitempty"`
+	Root        *string                `json:"-"`
 }
 
 func Load(cfgPath string) *Project {

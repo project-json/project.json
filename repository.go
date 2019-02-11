@@ -3,7 +3,7 @@ package projectcfg
 type Repositories []*Repository
 
 type Repository struct {
-	Provider string   `cfg:"provider,omitempty"`
-	Url      string   `cfg:"url"`
-	Mirrors  []string `cfg:"mirrors,omitempty"`
+	Provider string   `json:"provider,omitempty"`
+	Url      string   `json:"url"`
+	Mirrors  []string `json:"mirrors,omitempty"`
 }

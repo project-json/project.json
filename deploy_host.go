@@ -7,8 +7,8 @@ type DeployHostMap map[HostName]*DeployHost
 type DeployHosts []*Host
 
 type DeployHost struct {
-	Branch BranchName `cfg:"branch,omitempty"`
-	Before string     `cfg:"before,omitempty"`
-	After  string     `cfg:"after,omitempty"`
-	Files  FileMap    `cfg:"files,omitempty"`
+	Branch BranchName `json:"branch,omitempty"`
+	Before string     `json:"before,omitempty"`
+	After  string     `json:"after,omitempty"`
+	Files  FileMap    `json:"files,omitempty"`
 }

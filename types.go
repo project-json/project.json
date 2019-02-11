@@ -4,6 +4,8 @@ type ProjectType string
 
 const (
 	WebsiteProject ProjectType = "website"
+	DocsProject    ProjectType = "docs"
+	LibaryProject  ProjectType = "library"
 )
 
 type Ordinality int

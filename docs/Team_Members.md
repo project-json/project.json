@@ -21,22 +21,28 @@ An example from the context of a `project.json` file:
         ...,
         "team": {
             "mikeschinkel": {
-                "name": "Mike Schinkel",
-                "type": "person",
-                "role": "Architect",
-                "email": "mike@newclarity.net"
+                "name":  "Mike Schinkel",
+                "type":  "person",
+                "roles": ["architect","dev","user"]
+                "email":  "mike@newclarity.net"
+            },
+            "mickhellstrom": {
+                "name":  "Mick Hellstrom",
+                "type":  "person",
+                "roles": ["architect","dev","user"]
+                "email":  "mike@newclarity.net"
             },
             "newclarity": {
                 "name":  "NewClarity Consulting LLC",
-                "type": "organization",
-                "role": "Sponsor",
+                "type":  "organization",
+                "roles": ["sponsor"]
                 "email": "team@newclarity.net"
             },
-            "wplib": {
-                "name":  "The WPLib Team",
-                "type": "project",
-                "role": "Advocate",
-                "email": "team@wplib.org"
+            "gearbox": {
+                "name":  "The Gearbox Team",
+                "type":  "project",
+                "roles": ["advocate]",
+                "email": "team@gearbox.works"
             }
         },
         ...

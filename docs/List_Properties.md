@@ -1,6 +1,6 @@
 ## List Properties
 
-Project.JSON typically uses JSON objects for properties _(though not always)_ where others might use arrays for properties.
+_Project Config_ typically uses JSON objects for properties _(though not always)_ where others might use arrays for properties.
 For example, team members might otherwise be represented like this in another specification:
 
     {
@@ -22,7 +22,7 @@ For example, team members might otherwise be represented like this in another sp
         ...
     }        
 
-For Project.JSON we instead use object properties rather than array elements:
+For _Project Config_ we instead use object properties rather than array elements:
 
     {
         ..., 
@@ -44,7 +44,7 @@ For Project.JSON we instead use object properties rather than array elements:
     }        
 
 ### @Defaults
-In addition, Project JSON supports defaults, so the above can be rewritten:
+In addition, _Project Config_ will supports `@defaults`, so the above can be rewritten:
 
     {
         ..., 
