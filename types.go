@@ -1,5 +1,7 @@
 package projectcfg
 
+const DefaultFilename string = "project.json"
+
 type ProjectType string
 
 const (
