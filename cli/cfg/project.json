@@ -1,0 +1,216 @@
+{
+   "schema": "1.0 alpha",
+   "name": "Project Config",
+   "hostname": "projectcfg.org",
+   "enabled": true,
+   "identity": "github.com/projectcfg/website",
+   "description": "Website for The Gearbox Works",
+   "namespace": "ProjectCfg",
+   "slug": "projectcfg",
+   "prefix": "prjcfg_",
+   "type": "website",
+   "aliases": [
+      "www.{hostname}"
+   ],
+   "team": {
+      "gearbox": {
+         "email": "team@gearbox.works",
+         "name": "The Gearbox Team",
+         "roles": [
+            "owner",
+            "advocate"
+         ],
+         "type": "project"
+      },
+      "mickhellstrom": {
+         "email": "mike@newclarity.net",
+         "name": "Mick Hellstrom",
+         "roles": [
+            "architect",
+            "dev",
+            "sysadmin",
+            "devops"
+         ],
+         "type": "person"
+      },
+      "mikeschinkel": {
+         "email": "mike@newclarity.net",
+         "name": "Mike Schinkel",
+         "roles": [
+            "product",
+            "dev",
+            "user"
+         ],
+         "type": "person"
+      },
+      "newclarity": {
+         "email": "team@newclarity.net",
+         "name": "NewClarity Consulting LLC",
+         "roles": [
+            "sponsor"
+         ],
+         "type": "organization"
+      }
+   },
+   "stack": {
+      "wordpress/cacheserver": "wplib/redis:4.0.9",
+      "wordpress/cliapp": "wplib/wp-cli:1.5.1",
+      "wordpress/dbserver": "wplib/mariadb:10.3.6",
+      "wordpress/processvm": "wplib/php:7.1.18",
+      "wordpress/webserver": "wplib/nginx:1.14.0"
+   },
+   "dev": {
+      "environments": {
+         "gearbox": {
+            "name": "Gearbox",
+            "version": "0.5",
+            "hostname": "gearbox.works.local",
+            "aliases": [
+               "www.{hostname}"
+            ]
+         }
+      }
+   },
+   "source": {
+      "web_root": "/www",
+      "frameworks": {
+         "wordpress": {
+            "content_path": "/content",
+            "core_path": "/wp",
+            "root_path": "/",
+            "vendor_path": "/vendor"
+         }
+      },
+      "repositories": [
+         {
+            "provider": "github",
+            "url": "ssh://git@github.com:projectcfg/website.git",
+            "mirrors": [
+               "https://github.com/newclarity/projectcfg-website"
+            ]
+         }
+      ],
+      "branches": {
+         "develop": {},
+         "master": {}
+      }
+   },
+   "deploy": {
+      "provider": "pantheon",
+      "target_name": "gearbox.works",
+      "target_id": "????",
+      "web_root": "/",
+      "credentials": {
+         "token": "need this"
+      },
+      "frameworks": {
+         "wordpress": {
+            "content_path": "/wp-content",
+            "core_path": "/",
+            "root_path": "/",
+            "vendor_path": "/vendor"
+         }
+      },
+      "files": {
+         "copy": [
+            "{content}/mu-plugins/site-loader.php",
+            "{root}/pantheon.yml"
+         ],
+         "delete": [
+            "{root}/readme.html",
+            "{root}/README.md",
+            "{root}/xmlrpc.php",
+            "{root}/wp-trackback.php",
+            "{root}/wp-signup.php",
+            "{root}/license.txt",
+            "{root}/wp-config-sample.php",
+            "{content}/plugins/hello.php",
+            "{content}/themes/twentyseventeen/*",
+            "{content}/themes/twentyseventeen"
+         ],
+         "exclude": [
+            "{root}/index.php",
+            "{root}/wp-config.php",
+            "{root}/wp-config-atlpba.local.php",
+            "{content}/upgrade",
+            "{content}/uploads",
+            "composer.json"
+         ],
+         "keep": [
+            "{content}/mu-plugins/pantheon.php",
+            "{content}/mu-plugins/pantheon",
+            "{content}/mu-plugins/index.php",
+            "{content}/plugins/index.php",
+            "{content}/themes/index.php",
+            "{content}/index.php",
+            "{root}/wp-config-deploy.php",
+            "{content}/upgrade",
+            "{content}/uploads"
+         ]
+      },
+      "hosts": {
+         "develop": {
+            "branch": "develop"
+         },
+         "production": {
+            "branch": "master",
+            "after": "deploy_test_to_live",
+            "files": {
+               "delete": [
+                  "/wp-config-local.php"
+               ]
+            }
+         },
+         "staging": {
+            "branch": "master",
+            "after": "deploy_dev_to_test"
+         },
+         "testing": {
+            "branch": "master"
+         }
+      }
+   },
+   "hosts": {
+      "develop": {
+         "provider": "pantheon",
+         "name": "develop",
+         "label": "Developer testing",
+         "web_root": "/code",
+         "credentials": {},
+         "repository": {
+            "url": "ssh://codeserver.dev.abcdefgh-ijkl-mnop-qrst-uvwxyz123456@codeserver.dev.abcdefgh-ijkl-mnop-qrst-uvwxyz123456.drush.in:2222/~/repository.git"
+         }
+      },
+      "production": {
+         "provider": "pantheon",
+         "name": "live",
+         "label": "Staging (Pantheon's 'LIVE')",
+         "web_root": "/code",
+         "credentials": {},
+         "repository": {
+            "url": "ssh://codeserver.dev.abcdefgh-ijkl-mnop-qrst-uvwxyz123456@codeserver.dev.abcdefgh-ijkl-mnop-qrst-uvwxyz123456.drush.in:2222/~/repository.git"
+         }
+      },
+      "staging": {
+         "provider": "pantheon",
+         "name": "test",
+         "label": "Staging (Pantheon's 'TEST')",
+         "web_root": "/code",
+         "credentials": {},
+         "repository": {
+            "url": "ssh://codeserver.dev.abcdefgh-ijkl-mnop-qrst-uvwxyz123456@codeserver.dev.abcdefgh-ijkl-mnop-qrst-uvwxyz123456.drush.in:2222/~/repository.git"
+         }
+      },
+      "testing": {
+         "provider": "pantheon",
+         "name": "dev",
+         "label": "Testing (Pantheon's 'DEV')",
+         "web_root": "/code",
+         "credentials": {},
+         "repository": {
+            "url": "ssh://codeserver.dev.abcdefgh-ijkl-mnop-qrst-uvwxyz123456@codeserver.dev.abcdefgh-ijkl-mnop-qrst-uvwxyz123456.drush.in:2222/~/repository.git"
+         }
+      }
+   }
+}
+
