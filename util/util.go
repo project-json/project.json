@@ -2,6 +2,7 @@ package util
 
 import (
 	"fmt"
+	"github.com/projectcfg/projectcfg/util/only"
 	"log"
 	"os"
 	"path/filepath"
@@ -18,14 +19,15 @@ func FileExists(file string) bool {
 func DirExists(dir string) bool {
 	return EntryExists(dir)
 }
-func GetProjectDir() string {
-	return filepath.Dir(GetExecutableDir())
-}
 
-func GetRelativeDir(dir string) string {
-	fp := fmt.Sprintf("%s/%s", GetExecutableDir(), dir)
-	return filepath.Clean(fp)
-}
+//func GetProjectDir() string {
+//	return filepath.Dir(GetExecutableDir())
+//}
+//
+//func GetRelativeDir(dir string) string {
+//	fp := fmt.Sprintf("%s/%s", GetExecutableDir(), dir)
+//	return filepath.Clean(fp)
+//}
 
 func GetExecutableFilepath() string {
 	fp, err := filepath.Abs(os.Args[0])
@@ -61,4 +63,27 @@ func Error(msg interface{}, args ...interface{}) {
 	}
 	fmt.Println(_msg + ".")
 	os.Exit(1)
+}
+
+func After(str string, sub string) (s string) {
+	for range only.Once {
+		pos := strings.LastIndex(str, sub)
+		if pos == -1 {
+			break
+		}
+		pos += len(sub)
+		if pos >= len(str) {
+			break
+		}
+		s = str[pos:]
+	}
+	return s
+}
+
+func Before(str string, sub string) string {
+	pos := strings.Index(str, sub)
+	if pos == -1 {
+		return ""
+	}
+	return str[0:pos]
 }

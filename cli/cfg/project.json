@@ -52,14 +52,14 @@
          "type": "organization"
       }
    },
-   "stack": {
-      "wordpress/cacheserver": "wplib/redis:4.0.9",
-      "wordpress/cliapp": "wplib/wp-cli:1.5.1",
-      "wordpress/dbserver": "wplib/mariadb:10.3.6",
-      "wordpress/processvm": "wplib/php:7.1.18",
-      "wordpress/webserver": "wplib/nginx:1.14.0"
-   },
    "dev": {
+      "stack": {
+         "wordpress/cacheserver": "wplib/redis:4.0.9",
+         "wordpress/cliapp": "wplib/wp-cli:1.5.1",
+         "wordpress/dbserver": "wplib/mariadb:10.3.6",
+         "wordpress/processvm": "wplib/php:7.1.18",
+         "wordpress/webserver": "wplib/nginx:1.14.0"
+      },
       "environments": {
          "gearbox": {
             "name": "Gearbox",
@@ -93,6 +93,9 @@
       "branches": {
          "develop": {},
          "master": {}
+      },
+      "componentents": {
+
       }
    },
    "deploy": {

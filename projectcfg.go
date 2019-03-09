@@ -4,10 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/projectcfg/projectcfg/util"
+	"github.com/projectcfg/projectcfg/util/types"
 	"io/ioutil"
 	"log"
 	"strings"
 )
+
+const DefaultFilename string = "project.json"
 
 var Instance *ProjectCfg
 
@@ -24,7 +27,7 @@ type ProjectCfg struct {
 	Namespace        string                 `json:"namespace,omitempty"`
 	Slug             string                 `json:"slug,omitempty"`
 	Prefix           string                 `json:"prefix,omitempty"`
-	Type             ProjectType            `json:"type,omitempty"`
+	Type             types.Project          `json:"type,omitempty"`
 	Aliases          []string               `json:"aliases,omitempty"`
 	Team             Team                   `json:"team,omitempty"`
 	Stack            Stack                  `json:"stack,omitempty"`

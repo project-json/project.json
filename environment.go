@@ -8,4 +8,5 @@ type Environment struct {
 	Version  string   `json:"version,omitempty"`
 	Hostname HostName `json:"hostname,omitempty"`
 	Aliases  Aliases  `json:"aliases,omitempty"`
+	Stack    Stack
 }
